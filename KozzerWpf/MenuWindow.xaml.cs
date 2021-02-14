@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using KozzerWpf.Pages;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using System.Threading.Tasks;
-using KozzerWpf.Code;
-using KozzerWpf.Pages;
 
 namespace KozzerWpf
 {
@@ -20,62 +10,52 @@ namespace KozzerWpf
     /// </summary>
     public partial class MenuWindow : Window
     {
+        // Application pages
+        private readonly Home     homePage    = null;
+        private readonly Products productPage = null;
+        private readonly Support  supportPage = null;
+        private readonly About    aboutPage   = null;
 
-        Home homePage = null;
-        Products productPage = null;
-        Support supportPage = null;
-        About aboutPage = null;
-
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public MenuWindow()
         {
             InitializeComponent();
+
+            homePage    = new Home();
+            productPage = new Products();
+            supportPage = new Support();
+            aboutPage   = new About();
         }
 
-        private async void btnHome_Click(object sender, RoutedEventArgs e)
-        {
-            if (homePage is null)
-                homePage = new Home();
-            await transitionContent(homePage);
-        }
+        private async void btnHome_Click(object sender, RoutedEventArgs e)     => await transitionContent(homePage);
+        private async void btnProducts_Click(object sender, RoutedEventArgs e) => await transitionContent(productPage);
+        private async void btnSupport_Click(object sender, RoutedEventArgs e)  => await transitionContent(supportPage);
+        private async void btnAbout_Click(object sender, RoutedEventArgs e)    => await transitionContent(aboutPage);
 
-        private async void btnProducts_Click(object sender, RoutedEventArgs e)
-        {
-            if (productPage is null)
-                productPage = new Products();
-            await transitionContent(productPage);
-        }
-
-        private async void btnSupport_Click(object sender, RoutedEventArgs e)
-        {
-            if (supportPage is null)
-                supportPage = new Support();
-            await transitionContent(supportPage);
-        }
-
-        private async void btnAbout_Click(object sender, RoutedEventArgs e)
-        {
-            if (aboutPage is null)
-                aboutPage = new About();
-            await transitionContent(aboutPage);
-        }
-
+        /// <summary>
+        /// Transistion from one Page to another
+        /// </summary>
+        /// <param name="newContent">New page to display once transistion is complete</param>
+        /// <returns></returns>
         private async Task transitionContent(Page newContent)
         {
-            if (mainWindowContent.Content is Home)
+            // Use type pattern matching to call AnimateOut() method
+            switch(mainWindowContent.Content)
             {
-                await (mainWindowContent.Content as Home).AnimateOut();
-            }
-            else if (mainWindowContent.Content is Products)
-            {
-                await (mainWindowContent.Content as Products).AnimateOut();
-            }
-            else if (mainWindowContent.Content is Support)
-            {
-                await (mainWindowContent.Content as Support).AnimateOut();
-            }
-            else if (mainWindowContent.Content is About)
-            {
-                await (mainWindowContent.Content as About).AnimateOut();
+                case Home homePage:
+                    await homePage.AnimateOut();
+                    break;
+                case Products productPage:
+                    await productPage.AnimateOut();
+                    break;
+                case Support supportPage:
+                    await supportPage.AnimateOut();
+                    break;
+                case About aboutPage:
+                    await aboutPage.AnimateOut();
+                    break;
             }
 
             // Loading it animates it in
