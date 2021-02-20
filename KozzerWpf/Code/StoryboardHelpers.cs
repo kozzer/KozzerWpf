@@ -41,7 +41,7 @@ namespace KozzerWpf
         /// <param name="seconds">The time the animation will take</param>
         /// <param name="offset">The distance to the right to start from</param>
         /// <param name="decelerationRatio">The rate of deceleration</param>
-        public static void AddSlideToRight(this Storyboard storyboard, float seconds, double offset, float decelerationRatio = 0.1f)
+        public static void AddSlideToRight(this Storyboard storyboard, float seconds, double offset, float decelerationRatio = 0.9f)
         {
             // Create the margin animate from right 
             var animation = new ThicknessAnimation

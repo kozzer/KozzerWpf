@@ -29,32 +29,36 @@ namespace KozzerWpf
             aboutPage   = new About();
         }
 
-        private async void btnHome_Click(object sender, RoutedEventArgs e)     => await transitionContent(homePage);
-        private async void btnProducts_Click(object sender, RoutedEventArgs e) => await transitionContent(productPage);
-        private async void btnSupport_Click(object sender, RoutedEventArgs e)  => await transitionContent(supportPage);
-        private async void btnAbout_Click(object sender, RoutedEventArgs e)    => await transitionContent(aboutPage);
+        private async void btnHome_Click(object sender, RoutedEventArgs e)     => await transitionContentTo(homePage);
+        private async void btnProducts_Click(object sender, RoutedEventArgs e) => await transitionContentTo(productPage);
+        private async void btnSupport_Click(object sender, RoutedEventArgs e)  => await transitionContentTo(supportPage);
+        private async void btnAbout_Click(object sender, RoutedEventArgs e)    => await transitionContentTo(aboutPage);
 
         /// <summary>
         /// Transistion from one Page to another
         /// </summary>
         /// <param name="newContent">New page to display once transistion is complete</param>
         /// <returns></returns>
-        private async Task transitionContent(Page newContent)
+        private async Task transitionContentTo(Page newContent)
         {
             // Use type pattern matching to call AnimateOut() method
             switch(mainWindowContent.Content)
             {
                 case Home homePage:
-                    await homePage.AnimateOut();
+                    if (mainWindowContent.Content != homePage)
+                        await homePage.AnimateOut();
                     break;
                 case Products productPage:
-                    await productPage.AnimateOut();
+                    if (mainWindowContent.Content != productPage)
+                        await productPage.AnimateOut();
                     break;
                 case Support supportPage:
-                    await supportPage.AnimateOut();
+                    if (mainWindowContent.Content != supportPage)
+                        await supportPage.AnimateOut();
                     break;
                 case About aboutPage:
-                    await aboutPage.AnimateOut();
+                    if (mainWindowContent.Content != aboutPage)
+                        await aboutPage.AnimateOut();
                     break;
             }
 

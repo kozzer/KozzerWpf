@@ -22,7 +22,7 @@ namespace KozzerWpf.Code
             var sb = new Storyboard();
 
             // Add slide from left animation
-            sb.AddSlideFromLeft(seconds, page.ActualWidth);
+            //sb.AddSlideFromLeft(seconds, page.ActualWidth);
 
             // Add fade in animation
             sb.AddFadeIn(seconds);
@@ -49,7 +49,7 @@ namespace KozzerWpf.Code
             var sb = new Storyboard();
 
             // Add slide to right animation
-            sb.AddSlideToRight(seconds, page.ActualWidth);
+            //sb.AddSlideToRight(seconds, page.ActualWidth);
 
             // Add fade in animation
             sb.AddFadeOut(seconds);

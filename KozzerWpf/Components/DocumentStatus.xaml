@@ -1,0 +1,29 @@
+﻿<UserControl x:Class="KozzerWpf.Components.DocumentStatus"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:KozzerWpf.Components"
+             mc:Ignorable="d" Background="DarkBlue"
+             d:DesignHeight="1000" d:DesignWidth="120">
+    <Grid Background="DarkBlue" Width="120" Margin="0,24,0,12">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <local:StatusLevel x:Name="lvl1CourtForm"               Grid.Row="0" StepNumber="Form"  StepLabel="Court Form"           IsFirstStep="True"    />
+        <local:StatusLevel x:Name="lvl2UnsavedDraft"            Grid.Row="1" StepNumber="1"     StepLabel="Unsaved Draft"                    />
+        <local:StatusLevel x:Name="lvl3SavedDraft"              Grid.Row="2" StepNumber="2"     StepLabel="Saved Draft"                      />
+        <local:StatusLevel x:Name="lvl4UnsignedDocument"        Grid.Row="3" StepNumber="3"     StepLabel="Unsigned&#13;Document"            />
+        <local:StatusLevel x:Name="lvl5PartlySignedDocument"    Grid.Row="4" StepNumber="4"     StepLabel="Partly Signed&#13;Document"       />
+        <local:StatusLevel x:Name="lvl6JudgeSignedDocument"     Grid.Row="5" StepNumber="5"     StepLabel="Judge Signed&#13;Document"        />
+        <local:StatusLevel x:Name="lvl7InTheSystem"             Grid.Row="6" StepNumber="Filed" StepLabel="In The System"        IsLastStep="True"  />
+
+    </Grid>
+</UserControl>
